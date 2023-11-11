@@ -1,22 +1,29 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';  // 注意这里的导入
+import { useNavigate } from 'react-router-dom';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
 
-  const navigateToAbout = () => {
-    navigate('/about');
+  const onNavigateTo = (name: string) => {
+    navigate(name);
   };
 
   return (
     <div>
       <h2>Home</h2>
       <p>Welcome to the home page!</p>
-      
-      <button onClick={navigateToAbout}>Go to About</button>
+
+      <div>
+        <button onClick={() => onNavigateTo('about')}>Go to About</button>
+      </div>
+      <div>
+        <button onClick={() => onNavigateTo('relationshipPlanet')}>Go to RelationshipPlanet</button>
+      </div>
+      <div>
+        <button onClick={() => onNavigateTo('helloThree1')}>Go to helloThree1</button>
+      </div>
     </div>
   );
 };
 
 export default Home;
-
