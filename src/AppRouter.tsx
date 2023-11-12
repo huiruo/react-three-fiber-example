@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';  // æ
 import Home from './components/Home';
 import About from './components/About';
 import RelationshipPlanet from './components/RelationshipPlanet';
-import HelloThree1 from './components/HelloThree1';
+import { Demo1 } from './components/demo1';
+import { Demo2 } from './components/demo2';
 
 const AppRouter: React.FC = () => {
   return (
@@ -13,7 +14,8 @@ const AppRouter: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/relationshipPlanet" element={<RelationshipPlanet />} />
-        <Route path="/helloThree1" element={<HelloThree1 />} />
+        <Route path="/demo1" element={<Demo1 />} />
+        <Route path="/demo2" element={<Demo2 />} />
       </Routes>
     </Router>
   );

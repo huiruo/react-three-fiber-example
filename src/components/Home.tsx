@@ -20,7 +20,10 @@ const Home: React.FC = () => {
         <button onClick={() => onNavigateTo('relationshipPlanet')}>Go to RelationshipPlanet</button>
       </div>
       <div>
-        <button onClick={() => onNavigateTo('helloThree1')}>Go to helloThree1</button>
+        <button onClick={() => onNavigateTo('demo1')}>Go to demo1</button>
+      </div>
+      <div>
+        <button onClick={() => onNavigateTo('demo2')}>Go to demo2</button>
       </div>
     </div>
   );
