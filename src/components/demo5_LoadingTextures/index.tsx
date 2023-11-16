@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const About: React.FC = () => {
+export const LoadingTextures: React.FC = () => {
   return (
     <div style={{ height: '600px', width: '600px', background: '#ffeb3b' }}>
       <h2>About</h2>
