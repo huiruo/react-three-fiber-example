@@ -1,0 +1,29 @@
+.container {
+  height: 100vh; /* 设置容器的高度为视口的高度 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  width: 100%;
+  height: 100%;
+  background: grey;
+}
+
+.media {
+  height: 100%;
+}
+
+.media-content {
+  height: 100%;
+}
+
+.content {
+  height: 100%;
+  padding-bottom: 40px;
+}
+
+p {
+  margin: 0;
+}
