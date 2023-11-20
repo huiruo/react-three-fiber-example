@@ -43,6 +43,10 @@ const Home: React.FC = () => {
       <div>
         <button onClick={() => onNavigateTo('demo6_reactRnd')}>Go to reactRnd</button>
       </div>
+
+      <div>
+        <button onClick={() => onNavigateTo('demo7-selectArea')}>Go to selectArea</button>
+      </div>
     </div>
   );
 };
