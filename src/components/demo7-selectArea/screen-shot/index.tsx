@@ -28,7 +28,7 @@ export default forwardRef<IScreenShotRef, IScreenShotProps>(
 
     // test
     return <div style={{ width: '100px', height: '100px', background: 'yellow' }}>
-      hello
+      hello screen-shot
     </div>
   }
 )

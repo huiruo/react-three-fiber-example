@@ -1,7 +1,7 @@
 import { Root, createRoot } from "react-dom/client";
 import { StartSelectEnum } from "./helper";
-import Selector, { IScreenShotRef } from "./screen-shot";
-import ScreenShot, { ISelectorRef } from "./area-selector";
+import ScreenShot, { IScreenShotRef } from "./screen-shot";
+import Selector, { ISelectorRef } from "./area-selector";
 import { useEffect, useRef } from "react";
 
 // 剪藏容器 id
@@ -19,7 +19,7 @@ export const App = (props: IAppProps) => {
   const screenShotRef = useRef<IScreenShotRef>(null);
   const selectorRef = useRef<ISelectorRef>(null);
 
-  console.log('render-剪藏容器',)
+  console.log('render-剪藏容器',type)
   // test
   /*
   return <div style={{width: '100px',height:'100px',background:'yellow'}}>
