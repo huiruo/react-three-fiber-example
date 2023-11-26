@@ -34,6 +34,9 @@ export default forwardRef<ISelectorRef, ISelectorProps>((props, propsRef) => {
     const selections = targetListRef.current.filter(item => item) || [];
     const selectAreaElements = await transformDOM(selections);
     const HTMLs = Array.from(selectAreaElements);
+
+    console.log('area-selector-onSave',{selectAreaElements,selections,HTMLs})
+
     const iframe = document.querySelector(
       `#${YQ_SANDBOX_BOARD_IFRAME}`,
     ) as HTMLIFrameElement;
@@ -147,16 +150,6 @@ export default forwardRef<ISelectorRef, ISelectorProps>((props, propsRef) => {
     };
   }, [onSave]);
 
-
-  // test
-  /*
-  return <div style={{ width: '100px', height: '100px', background: 'yellow' }}>
-    hello
-  </div>
-  */ 
-
-  // Actual code
-  
   if (saving) {
     return null;
   }

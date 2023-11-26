@@ -13,6 +13,10 @@ export const SelectArea: React.FC = () => {
         继续选取
       </button>
 
+      <button onClick={() => startSelectU(StartSelectEnum.screenShot)} >
+        截图
+      </button>
+
       <div>
         这段代码表示选择全局范围内的 id 为 selection-container 的元素，并对其应用以下样式：
 

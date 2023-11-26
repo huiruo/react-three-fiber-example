@@ -31,10 +31,10 @@ export const startSelect = (type: StartSelectEnum) => {
     });
   });
   */
-  startSelectUtil({ type:StartSelectEnum.areaSelect});
+  startSelectUtil({ type });
 };
 
-const startSelectUtil = (data: { type: StartSelectEnum })=>{
+const startSelectUtil = (data: { type: StartSelectEnum }) => {
   initSelectArea(data);
   // this.iframe?.classList.remove('show');
 }
