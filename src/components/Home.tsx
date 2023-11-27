@@ -47,6 +47,10 @@ const Home: React.FC = () => {
       <div>
         <button onClick={() => onNavigateTo('demo7-selectArea')}>Go to selectArea</button>
       </div>
+
+      <div>
+        <button onClick={() => onNavigateTo('demo8-RichTextExample')}>Go to slatjs01</button>
+      </div>
     </div>
   );
 };

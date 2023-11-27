@@ -11,6 +11,7 @@ import { LoadingModels } from './components/demo4_loadingModels';
 import { LoadingTextures } from './components/demo5_LoadingTextures';
 import { ReactRnd } from './components/demo6-reactRnd';
 import { SelectArea } from './components/demo7-selectArea';
+import { RichTextExample } from './components/demo8-RichTextExample';
 
 const AppRouter: React.FC = () => {
   return (
@@ -26,6 +27,7 @@ const AppRouter: React.FC = () => {
         <Route path="/demo5_loadingTextures" element={<LoadingTextures />} />
         <Route path="/demo6_reactRnd" element={<ReactRnd />} />
         <Route path="/demo7-selectArea" element={<SelectArea />} />
+        <Route path="/demo8-RichTextExample" element={<RichTextExample />} />
       </Routes>
     </Router>
   );
