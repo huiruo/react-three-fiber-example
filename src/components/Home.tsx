@@ -55,6 +55,9 @@ const Home: React.FC = () => {
       <div>
         <button onClick={() => onNavigateTo('demo9-monaco-editor')}>Go to monaco-editor</button>
       </div>
+      <div>
+        <button onClick={() => onNavigateTo('demo10-glideDataGrid')}>Go to glide DataGrid</button>
+      </div>
     </div>
   );
 };

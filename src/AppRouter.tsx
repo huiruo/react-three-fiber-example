@@ -13,6 +13,7 @@ import { ReactRnd } from './components/demo6-reactRnd';
 import { SelectArea } from './components/demo7-selectArea';
 import { RichTextExample } from './components/demo8-RichTextExample';
 import { MonacoEditor } from './components/demo9-monaco-editor';
+import { GlideDataGrid } from './components/demo10-glide-data-grid';
 
 const AppRouter: React.FC = () => {
   return (
@@ -30,6 +31,7 @@ const AppRouter: React.FC = () => {
         <Route path="/demo7-selectArea" element={<SelectArea />} />
         <Route path="/demo8-RichTextExample" element={<RichTextExample />} />
         <Route path="/demo9-monaco-editor" element={<MonacoEditor />} />
+        <Route path="/demo10-glideDataGrid" element={<GlideDataGrid />} />
       </Routes>
     </Router>
   );
