@@ -1,0 +1,13 @@
+.input-box {
+  min-height: 26px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: var(--gdg-editor-font-size);
+  font-family: var(--gdg-font-family);
+  color: var(--gdg-text-dark);
+}
+
+.input-box::-webkit-calendar-picker-indicator {
+  background-color: white;
+}

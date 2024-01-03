@@ -10,6 +10,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <AppRouter />
+    {/* glideDataGrid */}
+    <div id="portal" />
   </React.StrictMode>
 );
 

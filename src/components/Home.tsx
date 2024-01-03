@@ -58,6 +58,10 @@ const Home: React.FC = () => {
       <div>
         <button onClick={() => onNavigateTo('demo10-glideDataGrid')}>Go to glide DataGrid</button>
       </div>
+
+      <div>
+        <button onClick={() => onNavigateTo('demo11-glideDataGrid2')}>Go to glideDataGrid2</button>
+      </div>
     </div>
   );
 };
