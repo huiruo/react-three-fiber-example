@@ -1,8 +1,20 @@
 .editor-wrap {
+  /* display: flex;
+  align-items: center;
+  padding: 6px 0; */
+  /* color: var(--gdg-text-light); */
+
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   padding: 6px 0;
-  color: var(--gdg-text-light);
+  color: #a0a0a0;
 }
 
 .star-icon {
@@ -19,5 +31,32 @@
 }
 
 .active {
-  color: var(--gdg-text-dark);
+  /* color: var(--gdg-text-dark); */
+  color: #313139;
+}
+
+.clip-region {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 2px;
+  flex-grow: 1;
+
+  .gdg-growing-entry {
+      height: 100%;
+  }
+
+  & input.gdg-input {
+      width: 100%;
+      border: none;
+      border-width: 0;
+      outline: none;
+  }
+
+  & textarea.gdg-input {
+      border: none;
+      border-width: 0;
+      outline: none;
+  }
 }
