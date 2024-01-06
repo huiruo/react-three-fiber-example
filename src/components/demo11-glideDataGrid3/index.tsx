@@ -3,44 +3,15 @@ import {
   DataEditor,
   type DataEditorProps,
   type DataEditorRef,
-  GridCellKind,
-  type GridColumn,
-  type Theme,
+  // GridCellKind,
+  // type GridColumn,
+  // type Theme,
 } from "@glideapps/glide-data-grid";
 import { faker } from "@faker-js/faker";
 import { useUndoRedo } from "./use-undo-redo";
 import { useMockDataGenerator } from "./util";
 
-faker.seed(1337);
-
-const cols: GridColumn[] = [
-  {
-    title: "A",
-    width: 200,
-    group: "Group 1",
-  },
-  {
-    title: "B",
-    width: 200,
-    group: "Group 1",
-  },
-  {
-    title: "C",
-    width: 200,
-    group: "Group 2",
-  },
-  {
-    title: "D",
-    width: 200,
-    group: "Group 2",
-  },
-  {
-    title: "E",
-    width: 200,
-    group: "Group 2",
-  },
-];
-
+// faker.seed(1337);
 
 const defaultProps: Partial<DataEditorProps> = {
   smoothScrollX: true,
@@ -51,7 +22,7 @@ const defaultProps: Partial<DataEditorProps> = {
 };
 
 export const GlideDataGrid3: React.FC = () => {
-  const { cols: columns, getCellContent, setCellValue } = useMockDataGenerator(6);
+  const { cols: columns, getCellContent, setCellValue } = useMockDataGenerator(3);
 
   const gridRef = React.useRef<DataEditorRef>(null);
 
@@ -60,8 +31,6 @@ export const GlideDataGrid3: React.FC = () => {
     getCellContent,
     setCellValue
   );
-
-
 
   return (
     <div style={{ height: '800px', width: '1000px', background: 'grey' }}>

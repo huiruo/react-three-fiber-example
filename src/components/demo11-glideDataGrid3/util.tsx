@@ -16,7 +16,7 @@ import {
 
 import { faker } from "@faker-js/faker";
 
-faker.seed(1337);
+// faker.seed(1337);
 
 function isTruthy(x: any): boolean {
   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
@@ -27,13 +27,17 @@ function isTruthy(x: any): boolean {
  * Attempts to copy data between grid cells of any kind.
  */
 export function lossyCopyData<T extends EditableGridCell>(source: EditableGridCell, target: T): EditableGridCell {
+  console.log('%c=setCellValue before', 'color:green', { val: source, current: target })
+
   const sourceData = source.data;
   if (typeof sourceData === typeof target.data) {
+    console.log('%c=setCellValue before A:', 'color:green', { sourceData })
     return {
       ...target,
       data: sourceData as any,
     };
   } else
+    console.log('%c=setCellValue before B:', 'color:green', { sourceData })
     switch (target.kind) {
       case GridCellKind.Uri: {
         if (isArray(sourceData)) {
@@ -123,7 +127,8 @@ function getResizableColumns(amount: number, group: boolean): GridColumnWithMock
       icon: GridColumnIcon.HeaderString,
       hasMenu: false,
       getContent: () => {
-        const firstName = faker.name.firstName();
+        const firstName = faker.person.firstName();
+        // const firstName = 'test';
         return {
           kind: GridCellKind.Text,
           displayData: firstName,
@@ -140,7 +145,8 @@ function getResizableColumns(amount: number, group: boolean): GridColumnWithMock
       icon: GridColumnIcon.HeaderString,
       hasMenu: false,
       getContent: () => {
-        const lastName = faker.name.lastName();
+        // const lastName = faker.name.lastName();
+        const lastName = 'test2';
         return {
           kind: GridCellKind.Text,
           displayData: lastName,
@@ -168,6 +174,7 @@ function getResizableColumns(amount: number, group: boolean): GridColumnWithMock
         };
       },
     },
+    /*
     {
       title: "Email",
       id: "Email",
@@ -175,7 +182,8 @@ function getResizableColumns(amount: number, group: boolean): GridColumnWithMock
       icon: GridColumnIcon.HeaderString,
       hasMenu: false,
       getContent: () => {
-        const email = faker.internet.email();
+        // const email = faker.internet.email();
+        const email = 'test3';
         return {
           kind: GridCellKind.Text,
           displayData: email,
@@ -192,7 +200,8 @@ function getResizableColumns(amount: number, group: boolean): GridColumnWithMock
       icon: GridColumnIcon.HeaderString,
       hasMenu: false,
       getContent: () => {
-        const company = faker.name.jobTitle();
+        // const company = faker.name.jobTitle();
+        const company = 'test4';
         return {
           kind: GridCellKind.Text,
           displayData: company,
@@ -209,7 +218,8 @@ function getResizableColumns(amount: number, group: boolean): GridColumnWithMock
       icon: GridColumnIcon.HeaderUri,
       hasMenu: false,
       getContent: () => {
-        const url = faker.internet.url();
+        // const url = faker.internet.url();
+        const url = 'test5';
         return {
           kind: GridCellKind.Uri,
           displayData: url,
@@ -219,21 +229,26 @@ function getResizableColumns(amount: number, group: boolean): GridColumnWithMock
         };
       },
     },
+    */
   ];
 
   if (amount < defaultColumns.length) {
     return defaultColumns.slice(0, amount);
   }
 
+  /*
   const extraColumnsAmount = amount - defaultColumns.length;
 
   const extraColumns = [...new Array(extraColumnsAmount)].map((_, index) =>
     createTextColumnInfo(index + defaultColumns.length, group)
   );
+  */
 
-  return [...defaultColumns, ...extraColumns];
+  // return [...defaultColumns, ...extraColumns];
+  return [...defaultColumns];
 }
 
+/*
 function createTextColumnInfo(index: number, group: boolean): GridColumnWithMockingInfo {
   return {
     title: `Column ${index}`,
@@ -254,6 +269,7 @@ function createTextColumnInfo(index: number, group: boolean): GridColumnWithMock
     },
   };
 }
+*/
 
 export class ContentCache {
   // column -> row -> value
@@ -270,12 +286,15 @@ export class ContentCache {
   }
 
   set(col: number, row: number, value: GridCell) {
+    // console.log('%c====set===>0:','color:red',value)
+    // /*
     if (this.cachedContent.get(col) === undefined) {
       this.cachedContent.set(col, new Map());
     }
 
     const rowCache = this.cachedContent.get(col) as Map<number, GridCell>;
     rowCache.set(row, value);
+    // */
   }
 }
 
@@ -285,7 +304,8 @@ export function useMockDataGenerator(numCols: number, readonly: boolean = true, 
   const [colsMap, setColsMap] = React.useState(() => getResizableColumns(numCols, group));
 
   React.useEffect(() => {
-    setColsMap(getResizableColumns(numCols, group));
+    // TODO: 这个去掉也可以初始化数据
+    // setColsMap(getResizableColumns(numCols, group));
   }, [group, numCols]);
 
   const onColumnResize = React.useCallback((column: GridColumn, newSize: number) => {
@@ -301,11 +321,13 @@ export function useMockDataGenerator(numCols: number, readonly: boolean = true, 
   }, []);
 
   const cols = React.useMemo(() => {
+    // console.log('util-->cols:', colsMap.map(getGridColumn))
     return colsMap.map(getGridColumn);
   }, [colsMap]);
 
   const colsMapRef = React.useRef(colsMap);
   colsMapRef.current = colsMap;
+
   const getCellContent = React.useCallback(
     ([col, row]: Item): GridCell => {
       let val = cache.current.get(col, row);
@@ -314,8 +336,12 @@ export function useMockDataGenerator(numCols: number, readonly: boolean = true, 
         if (!readonly && isTextEditableGridCell(val)) {
           val = { ...val, readonly };
         }
+
+        // console.log('%c====set===>1:','color:red')
         cache.current.set(col, row, val);
       }
+
+      // console.log('getCellContent', { col, row, val }, cache.current)
       return val;
     },
     [readonly]
@@ -339,6 +365,8 @@ export function useMockDataGenerator(numCols: number, readonly: boolean = true, 
   );
 
   const setCellValueRaw = React.useCallback(([col, row]: Item, val: GridCell): void => {
+    console.log('%c====set===>2:','color:red')
+    alert('set')
     cache.current.set(col, row, val);
   }, []);
 
@@ -350,6 +378,7 @@ export function useMockDataGenerator(numCols: number, readonly: boolean = true, 
       }
       if (isEditableGridCell(val) && isEditableGridCell(current)) {
         const copied = lossyCopyData(val, current);
+        console.log('%c===>setCellValue copied', 'color:red', typeof copied.data === "string", copied)
         cache.current.set(col, row, {
           ...copied,
           displayData: typeof copied.data === "string" ? copied.data : (copied as any).displayData,
@@ -359,6 +388,8 @@ export function useMockDataGenerator(numCols: number, readonly: boolean = true, 
     },
     [colsMap]
   );
+
+  console.log('cache.current:',{ cache:cache.current,colsMap })
 
   return { cols, getCellContent, onColumnResize, setCellValue, getCellsForSelection, setCellValueRaw };
 }

@@ -130,7 +130,7 @@ export const GlideDataGrid = () => {
     }
   ]);
 
-  const onColumnResize = useCallback((column:any, newSize:number) => {
+  const onColumnResize = useCallback((column: any, newSize: number) => {
     setColumns((prevColsMap) => {
       const index = columns.findIndex((ci) => ci.title === column.title);
       const newArray = [...prevColsMap];
@@ -145,7 +145,7 @@ export const GlideDataGrid = () => {
   }, []);
 
   const getContent = useCallback(
-    (cell:any): GridCell => {
+    (cell: any): GridCell => {
       const [col, row] = cell;
       const dataRow = data[row] as any;
       const d = dataRow[columns[col].id];
@@ -209,7 +209,7 @@ export const GlideDataGrid = () => {
   );
 
   const onCellEdited = useCallback(
-    (cell:any, newValue:any) => {
+    (cell: any, newValue: any) => {
       if (newValue.kind !== GridCellKind.Text) {
         // we only have text cells, might as well just die here.
         return;
@@ -225,7 +225,7 @@ export const GlideDataGrid = () => {
     [data, columns]
   );
 
-  const onDragOverCell = (cell:any) => {
+  const onDragOverCell = (cell: any) => {
     console.log(cell);
   };
 
@@ -276,7 +276,7 @@ export const GlideDataGrid = () => {
     auto: true
   });
 
-  const onHeaderMenuClick = useCallback((col:any, bounds:any) => {
+  const onHeaderMenuClick = useCallback((col: any, bounds: any) => {
     setIsSubMenuOpen((cv) => !cv);
     // @ts-ignore
     setShowMenu({ col, bounds });
@@ -298,7 +298,7 @@ export const GlideDataGrid = () => {
     ]);
   }, [data, columns]);
 
-  const onColMoved = useCallback((startIndex:any, endIndex:any) => {
+  const onColMoved = useCallback((startIndex: any, endIndex: any) => {
     setColumns((old) => {
       const newCols = [...old];
       const [toMove] = newCols.splice(startIndex, 1);

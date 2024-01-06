@@ -46,6 +46,7 @@ interface EditAction {
 function reducer(state: ReducerState, action: Action) {
   const newState = { ...state };
 
+  console.log('%c=use-undo-redo.tsx-->reducer','color:#0D61F2',action.type)
   switch (action.type) {
     case "undo":
       if (state.canUndo) {
@@ -152,6 +153,7 @@ export function useUndoRedo(
         currentBatch.current.edits.push({ cell, newValue: previousValue });
         // When pasting lots of edits arrive sequentially. Undo/redo should replay in a batch so using a timeout to kick to the end of the event loop
         timeout.current = setTimeout(() => {
+          console.log('%c=use-undo-redo.tsx-->dispatch-edit','color:#0D61F2',currentBatch.current)
           if (currentBatch.current) {
             dispatch({
               type: "edit",
@@ -163,16 +165,19 @@ export function useUndoRedo(
       }
 
       // Continue with the edit
+      console.log('%c=use-undo-redo.tsx-->onCellEdited-1','color:red',{ cell, newValue })
       onCellEdited(cell, newValue);
     },
     [onCellEdited, getCellContent]
   );
 
   const undo = useCallback(() => {
+    console.log('%c=use-undo-redo.tsx-->dispatch-undo','color:#0D61F2')
     dispatch({ type: "undo" });
   }, [dispatch]);
 
   const redo = useCallback(() => {
+    console.log('%c=use-undo-redo.tsx-->dispatch-redo','color:#0D61F2')
     dispatch({ type: "redo" });
   }, [dispatch]);
 
@@ -188,6 +193,7 @@ export function useUndoRedo(
       for (const edit of state.operation.edits) {
         const prevValue = getCellContent(edit.cell) as EditableGridCell;
         previousState.edits.push({ cell: edit.cell, newValue: prevValue });
+        console.log('%c=use-undo-redo.tsx-->onCellEdited-2','color:red',{ forObj:state.operation.edits,cell:edit.cell, newValue:edit.newValue })
         onCellEdited(edit.cell, edit.newValue);
         cells.push({ cell: edit.cell });
       }
@@ -195,6 +201,8 @@ export function useUndoRedo(
       setGridSelection(state.operation.selection);
       gridSelectionRef.current = state.operation.selection;
       gridRef.current.updateCells(cells);
+
+      console.log('%c=use-undo-redo.tsx-->edit&&operationApplied','color:#0D61F2',previousState)
 
       dispatch({
         type: "edit",
