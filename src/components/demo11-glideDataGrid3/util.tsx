@@ -128,7 +128,7 @@ function getResizableColumns(amount: number, group: boolean): GridColumnWithMock
       hasMenu: false,
       getContent: () => {
         const firstName = faker.person.firstName();
-        // const firstName = 'test';
+
         return {
           kind: GridCellKind.Text,
           displayData: firstName,
@@ -170,6 +170,7 @@ function getResizableColumns(amount: number, group: boolean): GridColumnWithMock
           displayData: [`https://picsum.photos/id/${n}/40/40`],
           allowOverlay: true,
           allowAdd: false,
+          // allowAdd: true,
           readonly: true,
         };
       },
@@ -287,6 +288,7 @@ export class ContentCache {
 
   set(col: number, row: number, value: GridCell) {
     // console.log('%c====set===>0:','color:red',value)
+    console.log('%c====set===>0:','color:red')
     // /*
     if (this.cachedContent.get(col) === undefined) {
       this.cachedContent.set(col, new Map());
@@ -308,7 +310,10 @@ export function useMockDataGenerator(numCols: number, readonly: boolean = true, 
     // setColsMap(getResizableColumns(numCols, group));
   }, [group, numCols]);
 
+  /*
   const onColumnResize = React.useCallback((column: GridColumn, newSize: number) => {
+    console.log('onColumnResize-->',column)
+
     setColsMap(prevColsMap => {
       const index = prevColsMap.findIndex(ci => ci.title === column.title);
       const newArray = [...prevColsMap];
@@ -319,6 +324,7 @@ export function useMockDataGenerator(numCols: number, readonly: boolean = true, 
       return newArray;
     });
   }, []);
+  */
 
   const cols = React.useMemo(() => {
     // console.log('util-->cols:', colsMap.map(getGridColumn))
@@ -333,6 +339,8 @@ export function useMockDataGenerator(numCols: number, readonly: boolean = true, 
       let val = cache.current.get(col, row);
       if (val === undefined) {
         val = colsMapRef.current[col].getContent();
+        // HACK: set row val
+        // console.log('getCellContent-val:',(val as any)?.data)
         if (!readonly && isTextEditableGridCell(val)) {
           val = { ...val, readonly };
         }
@@ -372,6 +380,7 @@ export function useMockDataGenerator(numCols: number, readonly: boolean = true, 
 
   const setCellValue = React.useCallback(
     ([col, row]: Item, val: GridCell): void => {
+      console.log('setCellValue===>',)
       let current = cache.current.get(col, row);
       if (current === undefined) {
         current = colsMap[col].getContent();
@@ -389,9 +398,11 @@ export function useMockDataGenerator(numCols: number, readonly: boolean = true, 
     [colsMap]
   );
 
-  console.log('cache.current:',{ cache:cache.current,colsMap })
+  // console.log('cache.current:',{ cache:cache.current,colsMap,cols })
+  console.log('cache.current:',cache)
 
-  return { cols, getCellContent, onColumnResize, setCellValue, getCellsForSelection, setCellValueRaw };
+  // return { cols, getCellContent, onColumnResize, setCellValue, getCellsForSelection, setCellValueRaw };
+  return { cols, getCellContent, setCellValue, getCellsForSelection, setCellValueRaw };
 }
 
 function panic(message: string = "This should not happen"): never {

@@ -1,7 +1,34 @@
+## cache 初始化怎么赋值
+```js
+const cache = React.useRef<ContentCache>(new ContentCache());
+```
 
+可见也是在`getCellContent`赋值
+```js
+const getCellContent = React.useCallback(
+  ([col, row]: Item): GridCell => {
+    let val = cache.current.get(col, row);
+    if (val === undefined) {
+      val = colsMapRef.current[col].getContent();
+      // HACK: set row val
+      // console.log('getCellContent-val:',(val as any)?.data)
+      if (!readonly && isTextEditableGridCell(val)) {
+        val = { ...val, readonly };
+      }
+
+      // console.log('%c====set===>1:','color:red')
+      cache.current.set(col, row, val);
+    }
+
+    // console.log('getCellContent', { col, row, val }, cache.current)
+    return val;
+  },
+  [readonly]
+);
+```
+
+## util 代码解析
 这段代码是一个使用faker库生成模拟数据的辅助函数`useMockDataGenerator`。它接受三个参数`numCols`、`readonly`和`group`，并返回一些帮助构建模拟数据的函数。
-
-在这段代码中，`faker`库被用来生成模拟数据。`faker`库可以生成各种类型的随机数据，如姓名、邮箱、头像等。通过调用`faker`的各种方法，可以生成不同类型的随机数据。
 
 `useMockDataGenerator`函数中的`getResizableColumns`函数定义了一个默认的列配置数组`defaultColumns`，每个列配置都包含了一些属性，如标题、ID、组名、图标等。每个列配置还有一个`getContent`函数，该函数用来生成每个单元格的模拟数据。
 
@@ -80,4 +107,27 @@ function getResizableColumns(amount: number, group: boolean): GridColumnWithMock
 
   return [...defaultColumns];
 }
+```
+
+### 可见模拟的值是在`colsMapRef.current[col].getContent()`获取的
+```js
+  const getCellContent = React.useCallback(
+    ([col, row]: Item): GridCell => {
+      let val = cache.current.get(col, row);
+      if (val === undefined) {
+        val = colsMapRef.current[col].getContent();
+        console.log('getCellContent-val:',(val as any)?.data)
+        if (!readonly && isTextEditableGridCell(val)) {
+          val = { ...val, readonly };
+        }
+
+        // console.log('%c====set===>1:','color:red')
+        cache.current.set(col, row, val);
+      }
+
+      // console.log('getCellContent', { col, row, val }, cache.current)
+      return val;
+    },
+    [readonly]
+  );
 ```
