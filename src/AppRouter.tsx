@@ -16,6 +16,7 @@ import { MonacoEditor } from './components/demo9-monaco-editor';
 import { GlideDataGrid } from './components/demo10-glide-data-grid';
 import { GlideDataGrid2 } from './components/demo11-glideDataGrid2';
 import { GlideDataGrid3 } from './components/demo11-glideDataGrid3';
+import { GlideDataGridAppendRow } from './components/demo12-glideDataGrid-append-row';
 
 const AppRouter: React.FC = () => {
   return (
@@ -36,6 +37,7 @@ const AppRouter: React.FC = () => {
         <Route path="/demo10-glideDataGrid" element={<GlideDataGrid />} />
         <Route path="/demo11-glideDataGrid2" element={<GlideDataGrid2 />} />
         <Route path="/demo11-glideDataGrid3" element={<GlideDataGrid3 />} />
+        <Route path="/demo12-glideDataGrid-append-row" element={<GlideDataGridAppendRow />} />
       </Routes>
     </Router>
   );

@@ -66,6 +66,10 @@ const Home: React.FC = () => {
       <div>
         <button onClick={() => onNavigateTo('demo11-glideDataGrid3')}>Go to glideDataGrid - undo</button>
       </div>
+
+      <div>
+        <button onClick={() => onNavigateTo('demo12-glideDataGrid-append-row')}>Go to glideDataGrid - append row</button>
+      </div>
     </div>
   );
 };

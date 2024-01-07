@@ -412,3 +412,50 @@ function panic(message: string = "This should not happen"): never {
 export function assertNever(_never: never): never {
   return panic("Hell froze over");
 }
+
+export function clearCell(cell: GridCell): GridCell {
+  switch (cell.kind) {
+      case GridCellKind.Boolean: {
+          return {
+              ...cell,
+              data: false,
+          };
+      }
+      case GridCellKind.Image: {
+          return {
+              ...cell,
+              data: [],
+              displayData: [],
+          };
+      }
+      case GridCellKind.Drilldown:
+      case GridCellKind.Bubble: {
+          return {
+              ...cell,
+              data: [],
+          };
+      }
+      case GridCellKind.Uri:
+      case GridCellKind.Markdown: {
+          return {
+              ...cell,
+              data: "",
+          };
+      }
+      case GridCellKind.Text: {
+          return {
+              ...cell,
+              data: "",
+              displayData: "",
+          };
+      }
+      case GridCellKind.Number: {
+          return {
+              ...cell,
+              data: 0,
+              displayData: "",
+          };
+      }
+  }
+  return cell;
+}

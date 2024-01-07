@@ -46,7 +46,8 @@ interface EditAction {
 function reducer(state: ReducerState, action: Action) {
   const newState = { ...state };
 
-  console.log('%c=use-undo-redo.tsx-->reducer','color:#0D61F2',action.type)
+  console.log('%c=use-undo-redo.tsx-->reducer','color:#0D61F2','type:',action.type,{ state,canUndo:state.canUndo })
+
   switch (action.type) {
     case "undo":
       if (state.canUndo) {
@@ -98,6 +99,7 @@ function reducer(state: ReducerState, action: Action) {
         newState.canUndo = true;
       }
 
+      console.log('%c=use-undo-redo.tsx-->edit action:','color:red',{ newState })
       return newState;
 
     default:
@@ -190,10 +192,11 @@ export function useUndoRedo(
         selection: gridSelectionRef.current,
       };
 
+      console.log('%c=undo-useEffect-2','color:magenta',state.operation.edits)
       for (const edit of state.operation.edits) {
         const prevValue = getCellContent(edit.cell) as EditableGridCell;
         previousState.edits.push({ cell: edit.cell, newValue: prevValue });
-        console.log('%c=use-undo-redo.tsx-->onCellEdited-2','color:red',{ forObj:state.operation.edits,cell:edit.cell, newValue:edit.newValue })
+        console.log('%c=use-undo-redo.tsx-->onCellEdited-2','color:magenta',{ forObj:state.operation.edits,cell:edit.cell, newValue:edit.newValue })
         onCellEdited(edit.cell, edit.newValue);
         cells.push({ cell: edit.cell });
       }
