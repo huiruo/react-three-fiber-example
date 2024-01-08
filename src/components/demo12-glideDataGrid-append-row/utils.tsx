@@ -152,7 +152,7 @@ function getResizableColumns(amount: number, group: boolean): GridColumnWithMock
       icon: GridColumnIcon.HeaderString,
       hasMenu: false,
       getContent: () => {
-        const firstName = faker.name.firstName();
+        const firstName = faker.person.firstName();
         return {
           kind: GridCellKind.Text,
           displayData: firstName,
@@ -169,7 +169,7 @@ function getResizableColumns(amount: number, group: boolean): GridColumnWithMock
       icon: GridColumnIcon.HeaderString,
       hasMenu: false,
       getContent: () => {
-        const lastName = faker.name.lastName();
+        const lastName = faker.person.lastName();
         return {
           kind: GridCellKind.Text,
           displayData: lastName,
@@ -221,7 +221,7 @@ function getResizableColumns(amount: number, group: boolean): GridColumnWithMock
       icon: GridColumnIcon.HeaderString,
       hasMenu: false,
       getContent: () => {
-        const company = faker.name.jobTitle();
+        const company = faker.person.jobTitle();
         return {
           kind: GridCellKind.Text,
           displayData: company,
@@ -314,11 +314,14 @@ export function useMockDataGenerator(numCols: number, readonly: boolean = true, 
 
   const colsMapRef = React.useRef(colsMap);
   colsMapRef.current = colsMap;
+
   const getCellContent = React.useCallback(
     ([col, row]: Item): GridCell => {
       let val = cache.current.get(col, row);
+      // console.log('%c=getCellContent==>1:','color:green',val)
       if (val === undefined) {
         val = colsMapRef.current[col].getContent();
+        console.log('%c=getCellContent==>2:','color:green',{col, row},val)
         if (!readonly && isTextEditableGridCell(val)) {
           val = { ...val, readonly };
         }
@@ -330,6 +333,7 @@ export function useMockDataGenerator(numCols: number, readonly: boolean = true, 
   );
 
   const setCellValueRaw = React.useCallback(([col, row]: Item, val: GridCell): void => {
+    console.log('%c=setCellValueRaw:','color:red',val)
     cache.current.set(col, row, val);
   }, []);
 
@@ -454,7 +458,7 @@ function getColumnsForCellTypes(): GridColumnWithMockingInfo[] {
       icon: GridColumnIcon.HeaderCode,
       hasMenu: false,
       getContent: () => {
-        const name = faker.name.firstName();
+        const name = faker.person.firstName();
         return {
           kind: GridCellKind.Text,
           data: name,
@@ -531,7 +535,7 @@ function getColumnsForCellTypes(): GridColumnWithMockingInfo[] {
       hasMenu: false,
       getContent: () => {
         const markdown = `# Title
-Hello my name is *${faker.name.firstName()}*
+Hello my name is *${faker.person.firstName()}*
 
 ## TODO:
 Try out [Glide](https://www.glideapps.com/)
@@ -603,6 +607,7 @@ export function useAllMockedKinds() {
   }, [colsMap]);
 
   const [updateVersion, setUpdateVersion] = React.useState(0);
+
   const getCellContent = React.useCallback(
     ([col, row]: Item): GridCell => {
       // Terrible hack to force update when setCellValue requests it

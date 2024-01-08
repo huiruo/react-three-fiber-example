@@ -23,6 +23,9 @@ export const GlideDataGridAppendRow: React.FC = () => {
     const newRow = numRows;
     for (let c = 0; c < 6; c++) {
       const cell = getCellContent([c, newRow]);
+
+      // clearCell(cell)
+      // console.log('%c=onRowAppended:','color:red',clearCell(cell))
       setCellValueRaw([c, newRow], clearCell(cell));
     }
     setNumRows(cv => cv + 1);
