@@ -164,43 +164,50 @@ const Element = ({ attributes, children, element }: any) => {
     case 'block-quote':
       return (
         <blockquote style={style} {...attributes}>
-          {children}
+          你好～{children}
+          <div style={{ background: 'grey' }}>你好1-block-quote</div>
         </blockquote>
       )
     case 'bulleted-list':
       return (
         <ul style={style} {...attributes}>
           {children}
+          <div style={{ background: 'grey' }}>你好2-bulleted-list</div>
         </ul>
       )
     case 'heading-one':
       return (
         <h1 style={style} {...attributes}>
           {children}
+          <div style={{ background: 'grey' }}>你好3-heading-one</div>
         </h1>
       )
     case 'heading-two':
       return (
         <h2 style={style} {...attributes}>
           {children}
+          <div style={{ background: 'grey' }}>你好4-heading-two</div>
         </h2>
       )
     case 'list-item':
       return (
         <li style={style} {...attributes}>
           {children}
+          <div style={{ background: 'grey' }}>你好5-list-item</div>
         </li>
       )
     case 'numbered-list':
       return (
         <ol style={style} {...attributes}>
           {children}
+          <div style={{ background: 'grey' }}>你好6-numbered-list</div>
         </ol>
       )
     default:
       return (
         <p style={style} {...attributes}>
           {children}
+          <div style={{ background: 'grey' }}>你好7-default</div>
         </p>
       )
   }

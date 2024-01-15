@@ -148,7 +148,9 @@ export const GlideDataGrid = () => {
     (cell: any): GridCell => {
       const [col, row] = cell;
       const dataRow = data[row] as any;
+
       const d = dataRow[columns[col].id];
+      console.log('%c=getContent', 'color:red', { dataRow, d })
 
       const { dataType } = columns[col];
 
@@ -356,7 +358,8 @@ export const GlideDataGrid = () => {
         }}
         onColumnResize={onColumnResize}
       />
-      <div id="portal" />
+
+      {/* <div id="portal" />
       {showMenu !== undefined &&
         renderLayer(
           <div
@@ -376,7 +379,7 @@ export const GlideDataGrid = () => {
               <li>Action 3</li>
             </ul>
           </div>
-        )}
+        )} */}
     </div>
   );
 };

@@ -358,13 +358,6 @@ export function useMockDataGenerator(numCols: number, readonly: boolean = true, 
   return { cols, getCellContent, onColumnResize, setCellValue, setCellValueRaw };
 }
 
-export const defaultProps: Partial<DataEditorProps> = {
-  smoothScrollX: true,
-  smoothScrollY: true,
-  getCellsForSelection: true,
-  width: "100%",
-};
-
 export function clearCell(cell: GridCell): GridCell {
   switch (cell.kind) {
     case GridCellKind.Boolean: {
