@@ -34,7 +34,7 @@ export const GlideDataGridAppendRow: React.FC = () => {
   return (
     <div style={{ height: '800px', width: '1000px', background: 'grey' }}>
       <button onClick={onAdd}>
-        Append
+        Append 123
       </button>
 
       <DataEditor

@@ -1,6 +1,24 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const routers = [
+  "about",
+  "relationshipPlanet",
+  "demo1",
+  "demo2",
+  "demo3_events_interaction",
+  "demo4_loadingModels",
+  "demo5_loadingTextures",
+  "demo6_reactRnd",
+  "demo7-selectArea",
+  "demo8-RichTextExample",
+  "demo9-monaco-editor",
+  "demo10-glideDataGrid",
+  "demo11-glideDataGrid2",
+  "demo11-glideDataGrid3",
+  "demo12-glideDataGrid-append-row",
+]
+
 const Home: React.FC = () => {
   const navigate = useNavigate();
 
@@ -12,64 +30,13 @@ const Home: React.FC = () => {
     <div>
       <h2>Home</h2>
 
-      <div>
-        <button onClick={() => onNavigateTo('about')}>Go to About</button>
-      </div>
-
-      <div>
-        <button onClick={() => onNavigateTo('relationshipPlanet')}>Go to Relationship Planet</button>
-      </div>
-
-      <div>
-        <button onClick={() => onNavigateTo('demo1')}>Go to demo1</button>
-      </div>
-
-      <div>
-        <button onClick={() => onNavigateTo('demo2')}>Go to demo2</button>
-      </div>
-
-      <div>
-        <button onClick={() => onNavigateTo('demo3_events_interaction')}>Go to events interaction</button>
-      </div>
-
-      <div>
-        <button onClick={() => onNavigateTo('demo4_loadingModels')}>Go to loading models</button>
-      </div>
-
-      <div>
-        <button onClick={() => onNavigateTo('demo5_loadingTextures')}>Go to loading textures</button>
-      </div>
-
-      <div>
-        <button onClick={() => onNavigateTo('demo6_reactRnd')}>Go to reactRnd</button>
-      </div>
-
-      <div>
-        <button onClick={() => onNavigateTo('demo7-selectArea')}>Go to selectArea</button>
-      </div>
-
-      <div>
-        <button onClick={() => onNavigateTo('demo8-RichTextExample')}>Go to slatjs01</button>
-      </div>
-
-      <div>
-        <button onClick={() => onNavigateTo('demo9-monaco-editor')}>Go to monaco-editor</button>
-      </div>
-      <div>
-        <button onClick={() => onNavigateTo('demo10-glideDataGrid')}>Go to glide DataGrid</button>
-      </div>
-
-      <div>
-        <button onClick={() => onNavigateTo('demo11-glideDataGrid2')}>Go to glideDataGrid2</button>
-      </div>
-
-      <div>
-        <button onClick={() => onNavigateTo('demo11-glideDataGrid3')}>Go to glideDataGrid - undo</button>
-      </div>
-
-      <div>
-        <button onClick={() => onNavigateTo('demo12-glideDataGrid-append-row')}>Go to glideDataGrid - append row</button>
-      </div>
+      {
+        routers.map((router) => {
+          return <div key={router}>
+            <button onClick={() => onNavigateTo(router)}>Go to {router}</button>
+          </div>
+        })
+      }
     </div>
   );
 };
