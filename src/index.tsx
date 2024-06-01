@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import AppRouter from './AppRouter';
+import { FluentProvider, webLightTheme } from '@fluentui/react-components';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <AppRouter />
+    <FluentProvider theme={webLightTheme}>
+      <AppRouter />
+    </FluentProvider>,
     {/* glideDataGrid */}
     <div id="portal" />
   </React.StrictMode>

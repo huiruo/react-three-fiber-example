@@ -17,6 +17,7 @@ const routers = [
   "demo11-glideDataGrid2",
   "demo11-glideDataGrid3",
   "demo12-glideDataGrid-append-row",
+  "demo13-fluentui",
 ]
 
 const Home: React.FC = () => {

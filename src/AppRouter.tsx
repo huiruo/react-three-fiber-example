@@ -17,6 +17,7 @@ import { GlideDataGrid } from './components/demo10-glide-data-grid';
 import { GlideDataGrid2 } from './components/demo11-glideDataGrid2';
 import { GlideDataGrid3 } from './components/demo11-glideDataGrid3';
 import { GlideDataGridAppendRow } from './components/demo12-glideDataGrid-append-row';
+import { Demo13Fluentui } from './components/demo13-fluentui';
 
 const AppRouter: React.FC = () => {
   return (
@@ -38,6 +39,8 @@ const AppRouter: React.FC = () => {
         <Route path="/demo11-glideDataGrid2" element={<GlideDataGrid2 />} />
         <Route path="/demo11-glideDataGrid3" element={<GlideDataGrid3 />} />
         <Route path="/demo12-glideDataGrid-append-row" element={<GlideDataGridAppendRow />} />
+
+        <Route path="/demo13-fluentui" element={<Demo13Fluentui />} />
       </Routes>
     </Router>
   );
